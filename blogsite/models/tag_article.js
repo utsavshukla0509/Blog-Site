@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const tagArticleSchema = mongoose.Schema({
   _id: mongoose.Types.ObjectId,
-  tagid : {
+  tagId : {
     type : String,
     required : true
   },
-  articleid : {
+  articleId : {
     type : String,
     required : true
   },  

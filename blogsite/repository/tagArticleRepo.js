@@ -10,14 +10,14 @@ constructor() {}
     async insertTagArticle(tagId, articleId) {
         const tagarticleData = new TagArticle({
             _id: mongoose.Types.ObjectId(),
-            tagid : tagId,
-            articleid : articleId
+            tagId : tagId,
+            articleId : articleId
         });
         return tagarticleData.save()
     }
 
     async getArticles(tagId) {
-        return TagArticle.find({tagid: tagId}); 
+        return TagArticle.find({tagId: tagId}); 
     }
 }
 

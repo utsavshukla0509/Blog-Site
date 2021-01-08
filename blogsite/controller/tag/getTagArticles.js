@@ -9,10 +9,10 @@ const tagRepo = new TagRepo();
 class GetTagArticles{
     async handleRequest(req,res){
 
-        const tagname = req.params.tagname;
+        const tagName = req.params.tagname;
             
         try {
-            const tagData = await tagRepo.getTag(tagname);
+            const tagData = await tagRepo.getTag(tagName);
             if(tagData.length !== 0){
                 const articleData = await tagArticleRepo.getArticles(tagData[0]._id);
                 return res.status(200).json({articleData});

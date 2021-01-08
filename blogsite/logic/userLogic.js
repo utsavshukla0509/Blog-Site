@@ -13,7 +13,7 @@ class UserLogic {
 
     async generateToken(userId,userName,email){
         const userData = {
-            user_id : userId,
+            userId : userId,
             username: userName,
             email: email,
         };
