@@ -8,72 +8,107 @@ Build an application to display blog articles<br>
 2. **[User SignIn](#usersignin)**<br>
 3. **[User Profile](#userprofile)**<br>
 4. **[Publish](#publish)**<br>
+5. **[Home](#homeinfo)**<br>
+6. **[Get Articles By Tag](#getarticlesbytag)**<br>
+7. **[Commands Available](#commands)**<br>
 
 
 
-<a name = "createuserkey"></a>
+<a name = "usersignup"></a>
 
-1. ## Create User Key
-    #### POST &nbsp; /user/create
+1. ## Create User Account
+    #### POST &nbsp; /user/signup
     
     ```
+      Request Body : {
+        	"username" : "xyz",
+            "age" : 23,
+            "email" : "xyz@gmail.com",
+            "password" : "xyz"
+      }
+    
+    Response : {
+        The user has been signed up successfully!
+    }
+    ```
+
+<a name = "usersignin"></a>
+
+2. ## User SignIn
+    #### POST &nbsp; /user/login
+    
+    ``` 
     Request Body : {
-        "key" : "1e234b1212gg1e234b1212gg1e234b12",  // Any key which is always a string and capped at 32 chars.
-        "value" : {
-                    "name" : "hello",       
-                    "batch" : "A",                   // Any value which is always a JSON object and capped at 16KB.
-                        .
-                        .
-                        .
-                  },
-        "ttl" : "10",                               // Time-To-Live property(in seconds) is optional, by default the value of ttl is -1.
-        "createdOn" : "1609250866.56"               // denotes the current time in seconds (use (Date.now()/1000)).
+        "email" : "xyz@gmail.com",
+        "password" : "xyz"
     }
     
     Response : {
-        "key" : "1e234b1212gg1e234b1212gg1e234b12",
-        "value" : {
-                    "name" : "hello",       
-                    "batch" : "A",                   
-                        .
-                        .
-                        .
-                  },
+        "msg" : "Authentication has been successful",
+        "token" : "JWT_TOKEN"
     }
     ```
 
-<a name = "readuserkey"></a>
+<a name = "userprofile"></a>
 
-2. ## Read User Key
-    #### GET &nbsp; /user/read/:key
+3. ## User Profile
+    #### GET &nbsp; /user/:username
     
-    ```    
+    ```
+    Authorization: "Beaver JWT_TOKEN"
+    
     Response : {
-        "value" : {
-                    "name" : "hello",       
-                    "batch" : "A",                   
-                        .
-                        .
-                        .
-                  }
+        "data" : userData,                  // User profile info. is stored in data
+        "articles" : userArticles;          // All the articles he/she published is stored in articles 
     }
     ```
 
-<a name = "deleteuserkey"></a>
 
-3. ## Delete User Key
-    #### DELETE &nbsp; /user/delete/:key
+
     
-    ```   
+<a name = "publish"></a>
+
+4. ## Publish Article
+    #### POST &nbsp; /blog/publish
+    
+    ```
+    Authorization: "Beaver JWT_TOKEN"
+    
     Response : {
-        "message" : "Key is successfully deleted"
+        "description" : "",                 // Article description is stored in description
+        "captionTagList" : ""               // All the tags related to an article stored in captionTagList 
     }
     ```
-    
-    
-<a name = "commandsavailable"></a>
 
-4. ## Commands Available
+
+<a name = "homeinfo"></a>
+
+5. ## Home Info
+    #### GET &nbsp; /blog/home
+    
+    ```
+    Authorization: "Beaver JWT_TOKEN"
+    
+    Response : {
+        "articles" : []                     // All the newest to oldest articles based on sorting are stored in this articles list
+    }
+    ```
+
+<a name = "getarticlesbytag"></a>
+
+6. ## Get Articles By Tag
+    #### GET &nbsp; /tags/:tagname
+    
+    ```
+    Authorization: "Beaver JWT_TOKEN"
+    
+    Response : {
+        "articleData" : []                   // All the articles which have given "tagname" are stored in this articleData list
+    }
+    ```
+<a name = "commands"></a>
+
+7. ## Commands Available
    
    ```
    node server.js or nodemon  // to run the node server
