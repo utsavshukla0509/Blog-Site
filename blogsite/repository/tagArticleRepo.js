@@ -15,6 +15,10 @@ constructor() {}
         });
         return tagarticleData.save()
     }
+
+    async getArticles(tagId) {
+        return TagArticle.find({tagid: tagId}); 
+    }
 }
 
 module.exports = TagArticleRepo;
