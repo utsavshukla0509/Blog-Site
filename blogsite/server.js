@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/user");
 const articleRoute = require("./routes/article");
+const tagRoute = require("./routes/tag");
 
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(bodyParser.json({ limit: "10mb" }));
 
 app.use("/user", userRoute);
 app.use("/blog", articleRoute);
+app.use("/tags", tagRoute);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
