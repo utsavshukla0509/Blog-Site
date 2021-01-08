@@ -18,7 +18,8 @@ class GetUserDetail{
             const promiseRes = await Promise.all(promises);
             const userData = promiseRes[0];
             const userArticles = promiseRes[1];
-            return res.status(200).json({"data":userData,"articles": userArticles});
+            // console.log(userData,userArticles);
+            return res.status(200).json({"username":userData[0].username,"age":userData[0].age,"email":userData[0].email,"description": userArticles[0].description});
         } catch (error) {
             console.log(error);
             return res.status(500).json({ "error": "Internal server error" });

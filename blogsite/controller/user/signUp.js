@@ -15,17 +15,17 @@ class SignUp{
         try{
             const userData =  await userRepo.getUserDataByEmail(email);
             if(userData.length !== 0){
-                return res.status(404).json({msg : 'The entered Email is already Esit'});
+                return res.status(404).send("The entered Email is already Exist");
             }
             else{
                 const hash = await userLogic.hash(password);
                 await userRepo.createUser(username,age,email,hash);
-                return res.status(200).json({message: "The user has been signed up successfully!"});
+                return res.status(200).send("The user has been signed up successfully!");
             }
         }
         catch(error){
-            console.log(error);
-            return res.status(500).json({ "error": "Internal server error" });
+            // console.log(error);
+            return res.status(500).send("Internal server error");
         }
     }
 };

@@ -23,13 +23,13 @@ class SignIn{
                         });
                 }
                 else{
-                    return res.status(404).json({msg : 'Incorrect Username or Password!'});
+                    return res.status(404).json({msg : 'Incorrect Email or Password!'});
                 }
             }
         }
         catch(error){
             console.log(error);
-            return res.status(500).json({ "error": "Internal server error" });
+            return res.status(500).send("Internal server error");
         }
     }
 };
