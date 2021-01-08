@@ -2,11 +2,16 @@ const mongoose = require("mongoose");
 
 const articleSchema = mongoose.Schema({
   _id: mongoose.Types.ObjectId,
-  userid : {
+  user_id : {
     type : String,
     required : true
   },
-  caption_tag_list: []  
+  description : {
+    type : String,
+    required : true
+  },
+  captionTagList: [],
+  createdOn:{ type : Number}  
 });
 
 module.exports = mongoose.model("Article", articleSchema, "articles");

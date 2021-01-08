@@ -2,6 +2,8 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const userRoute = require("./routes/user");
+const articleRoute = require("./routes/article");
 
 
 const app = express();
@@ -22,6 +24,9 @@ connection.once('open', () => {
 app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 app.use(bodyParser.json({ limit: "10mb" }));
 
+
+app.use("/user", userRoute);
+app.use("/blog", articleRoute);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
