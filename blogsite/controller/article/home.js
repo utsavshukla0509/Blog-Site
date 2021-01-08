@@ -20,7 +20,7 @@ class Home{
                 const tagsId = data.captionTagList;
                 tagsId.forEach((tagId)=>{
                     promises.push(tagRepo.getTagByTagId(tagId).then((tagData) => {
-                        articleTags.push(tagData[0].tagname);
+                        articleTags.push(tagData[0].tagName);
                     }));
                 })
                 homeArticlesData.push({"article" :articleData,"tagNames" : articleTags});

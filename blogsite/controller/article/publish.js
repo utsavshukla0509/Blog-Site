@@ -12,7 +12,7 @@ class Publish{
 
     async handleRequest(req,res){
         console.log(req.body);
-        const {user_id} = req.userData;
+        const {userId} = req.userData;
         const description = req.body.description;
         const captionList = req.body.captionTagList;
         const newArticleId = mongoose.Types.ObjectId();
@@ -28,7 +28,7 @@ class Publish{
             const promiseResp = await Promise.all(promises);
             const tempCaptionList = _.flatten(promiseResp);
             console.log(tempCaptionList);
-            await articleRepo.saveArticle(newArticleId, user_id, description, tempCaptionList);
+            await articleRepo.saveArticle(newArticleId, userId, description, tempCaptionList);
         } catch (error) {
             console.log(error);
             return res.status(500).json({ "error": "Internal server error" });

@@ -8,7 +8,7 @@ class TagRepo {
 constructor() {}
 
     async getTag(tag) {
-        return Tag.find({tagname: tag});
+        return Tag.find({tagName: tag});
     }
 
     async getTagByTagId(tagId){
@@ -18,7 +18,7 @@ constructor() {}
     async createTag(tag) {
         const tagData = new Tag({
             _id: mongoose.Types.ObjectId(),
-            tagname: tag
+            tagName: tag
         });
         await tagData.save();
         return tagData;

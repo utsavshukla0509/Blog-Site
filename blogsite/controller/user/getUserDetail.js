@@ -8,10 +8,10 @@ class GetUserDetail{
     async handleRequest(req,res){
 
         try {
-            const user_id = req.userData.user_id;
+            const userId = req.userData.user_id;
             let promises = [];
-            promises.push(userRepo.getUserData(user_id));
-            promises.push(articleRepo.getUserDetail(user_id));
+            promises.push(userRepo.getUserData(userId));
+            promises.push(articleRepo.getUserDetail(userId));
             const promiseRes = await Promise.all(promises);
             const userData = promiseRes[0];
             const userArticles = promiseRes[1];

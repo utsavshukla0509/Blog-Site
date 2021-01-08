@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const tagSchema = mongoose.Schema({
   _id: mongoose.Types.ObjectId,
-  tagname : {
+  tagName : {
     type : String,
     required : true,
   }, 
