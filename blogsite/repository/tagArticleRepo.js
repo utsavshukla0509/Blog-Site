@@ -17,7 +17,7 @@ constructor() {}
     }
 
     async getArticles(tagId) {
-        return TagArticle.find({tagid: tagId});
+        return TagArticle.find({tagid: tagId}); 
     }
 }
 

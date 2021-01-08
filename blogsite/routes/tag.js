@@ -7,7 +7,7 @@ const getTagArticles = new GetTagArticles();
 
 router.get("/:tagname",checkAuth,(req,res) => {
     getTagArticles.handleRequest(req,res);
-});
+}); 
 
 
 module.exports = router;

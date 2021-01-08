@@ -22,6 +22,6 @@ class GetUserDetail{
         }
     }
 }
-
+ 
 
 module.exports = {GetUserDetail : GetUserDetail};
