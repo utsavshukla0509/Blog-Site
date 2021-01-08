@@ -13,16 +13,20 @@ class Home{
 
         try {
             const articleData =  await articleRepo.getUserDetailBySorting();
-            console.log(articleData);
-            articleData.forEach((data)=>{
+            // console.log(articleData);
+            let promises = [];
+            articleData.forEach(async(data)=>{
                 let articleTags = [];
                 const tagsId = data.captionTagList;
-                tagsId.forEach(async(tagId)=>{
-                    const tagData = await tagRepo.getTagByTagId(tagId);
-                    articleTags.push(tagData[0].tagname);
+                tagsId.forEach((tagId)=>{
+                    promises.push(tagRepo.getTagByTagId(tagId).then((tagData) => {
+                        articleTags.push(tagData[0].tagname);
+                    }));
                 })
                 homeArticlesData.push({"article" :articleData,"tagNames" : articleTags});
             })
+            await Promise.all(promises);
+            // console.log(homeArticlesData);
             return res.status(200).send(homeArticlesData);
         } catch (error) {
             console.log(error);
